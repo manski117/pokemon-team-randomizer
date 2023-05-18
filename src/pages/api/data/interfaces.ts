@@ -143,6 +143,36 @@ export const roles = [
       this.level = level;
     }
   }
+
+  export interface ItemData {
+    name: string;
+    spritenum?: number;
+    ignoreKlutz?: boolean;
+    megaStone?: string;
+    megaEvolves?: string;
+    itemUser?: string[];
+    onSetAbility?: (ability: any, target: any, source: any, effect: any) => any;
+    onTakeItem?: (item: any, source: any) => any;
+    onDamagingHit?: (damage: any, target: any, source: any, move: any) => void;
+    num: number;
+    gen: number;
+    fling?: {
+        basePower: number;
+    };
+    onAfterBoost?: (boost: any, target: any, source: any, effect: any) => any;
+    onResidualOrder?: number;
+    onResidualSubOrder?: number;
+    onResidual?: (pokemon: any) => void;
+    isBerry?: boolean;
+    naturalGift?: {
+        basePower: number;
+        type: string;
+    };
+    onUpdate?: (pokemon: any) => void;
+    onEat?: (pokemon: any) => void;
+    isPokeball?: boolean;
+    isNonstandard?: string;
+}
   
   // const charizard = new BattlePokemon('Charizard', 84, ['Earthquake', 'Flamethrower', 'Focus Blast'], 'Charizardite');
   

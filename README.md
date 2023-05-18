@@ -9,8 +9,8 @@ Updated the readme from a new repo. Does the change show up on the github?
 # TODO: 
 ## Create team slot components
 - **DONE**  ~~make sure each slot can randomize individually~~
-- make sure they are aware of what the other pokemon will be
-- send pokemon back to root state for export
+- **DONE** make sure they are aware of what the other pokemon will be
+- **DONE** send pokemon back to root state for export
 - regex to sanitize hostile escape characters
 - **DONE** ~~layout and styling~~
 
@@ -20,7 +20,7 @@ Updated the readme from a new repo. Does the change show up on the github?
 - responsive design
 
 ## Program team-crafting logic
-- items
+- items *current task 5/18*
 - lock button
 
 ## Export to modal

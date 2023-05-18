@@ -2,6 +2,7 @@ import { RandomSetsSV } from '../data/randomSetsSV';
 import { PokeSets, BattleReady, BattlePokemon, EVspread } from '../data/interfaces';
 import { Pokedex } from '../data/pokedex';
 import { Natures } from '../data/natures';
+import { Items, PopularItems } from '../data/heldItems';
 
 function getRandomKey<T>(obj: T): keyof T {
     return Object.keys(obj as Record<keyof T, any>)[Math.floor(Math.random() * Object.keys(obj as Record<keyof T, any>).length)] as keyof T;
@@ -50,12 +51,25 @@ export function getRandomPokemon(setData: PokeSets): BattlePokemon {
 
   
 
-  //////parse relevant info
+  //////////////PARSE RELEVANT INFO//////////////////
   //get name of pokemon
   monSet.species = randomSpecies.charAt(0).toUpperCase() + randomSpecies.slice(1);
 
+  //////everything item related//////////
+  //TODO: write program to divi up items based on role
+  //randomly pick item from database of all items
+  // Get array of keys from Items object
+
+  // let keys: any = Object.keys(Items);       //uncomment this code to use ALL items
+  let keys: any = Object.keys(PopularItems);   //uncomment this code to only use GOOD items
+  // Get random index from keys array
+  let randomIndex: number = Math.floor(Math.random()*keys.length);
+  // Return the key at the random index as a string
+  let randomItem: string = keys[randomIndex];
+
   //give item
-  monSet.item = 'Leftovers'; //TODO: write program to divi up items based on role
+  monSet.item = randomItem; 
+  
 
   //assign ability
   //TODO: assign abilities based on roles
