@@ -15,6 +15,7 @@ Updated the readme from a new repo. Does the change show up on the github?
 - **DONE** ~~layout and styling~~
 
 ## Add Styling
+- yeah, lets get them images
 - pokemon images (api call?)
 - responsive design
 
