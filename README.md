@@ -19,9 +19,10 @@ Updated the readme from a new repo. Does the change show up on the github?
 - pokemon images (api call?)
 - responsive design
 
+
 ## Program team-crafting logic
-- items *current task 5/18*
-- lock button
+- items based on pkmn team role
+- lock button *current task 5/22*
 
 ## Export to modal
 - make modal appear with text on button press.
@@ -41,7 +42,7 @@ Updated the readme from a new repo. Does the change show up on the github?
 ## Planned Future Features:
 - by type
 - abilities
-- natures
+- natures (ability to randomize natures, natures match role, etc.)
 - stats
 - doubles logic
 - other generations
@@ -49,5 +50,9 @@ Updated the readme from a new repo. Does the change show up on the github?
 - edit moves, abilities, items, stats
 - auto-populate / auto complete inputs
 - check validity
+
+
+#### Bugs to eventually fix: 
+ - Arceus of a certain type MUST appear with the plate of that corresponding type.
 
 

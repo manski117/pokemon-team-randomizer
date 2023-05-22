@@ -27,20 +27,20 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
 
     React.useEffect(() => {
         //this code will run whenever the "locked" state of this team slot changes
-        console.log(`slot ${slotNum} state changed:`, locked);
-        console.log('current state of this TeamSlot:', pokeObjRecieved, tempPokeObj, pokeObj);
+        // console.log(`slot ${slotNum} state changed:`, locked);
+        // console.log('current state of this TeamSlot:', pokeObjRecieved, tempPokeObj, pokeObj);
     }, [locked]);
 
     React.useEffect(() => {
         //this only runs when a new pokemon is generated for this slot
         //this resets the component and all data in it
         if (signalToUpdate != null) {
-          console.log(`this is when team slot ${slotNum} SHOULD re-render from now on`, signalToUpdate);
+        //   console.log(`this is when team slot ${slotNum} SHOULD re-render from now on`, signalToUpdate);
           setInitialInputValues();
           if (pokeObjRecieved){
             updateInitialPokemonObj();
           }  
-          console.log('the initialized team-slot-level pokeObj is currently', tempPokeObj);
+        //   console.log('the initialized team-slot-level pokeObj is currently', tempPokeObj);
         }
       }, [signalToUpdate]);
 
@@ -49,7 +49,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
     //it takes the data the user has modified in the team slot and updates root team state
     
     if (signalToExport != null) {
-        console.log('this will send the temporaryPokeObj to root state for final export');
+        // console.log('this will send the temporaryPokeObj to root state for final export');
         let objToExport: any = JSON.parse(JSON.stringify(tempPokeObj));
         exportFinal(objToExport, slotNum);
 
@@ -73,7 +73,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         //this will update the pokeObjRecieved state if it detects a change
         // console.log('this should run whenever this TeamSlot component updates...does it?');
         if (pokeObj) {
-            console.log('useRef triggered');
+            // console.log('useRef triggered');
             setPokeObjRecieved(true);
         } else{
             setPokeObjRecieved(false);
@@ -90,10 +90,6 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
             setTempPokeObj(initalPokemonData);
     }
 
-    function exportModifiedPokeObj(){
-        //this function will be called by parent component
-        //creates a finalized pokeObj and then sends it to root state to be exported as txt
-    }
 
     //////TODO: grab all values from the inputs and make sure they are accurate/////
 
@@ -140,7 +136,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         //create a temporary deep copy of our obj
         let temporaryContainerObj: any = JSON.parse(JSON.stringify(tempPokeObj));
         temporaryContainerObj[key] =  newValue;
-        console.log('If we were to call the setter function here, the new initial pokeObj state would be this:', temporaryContainerObj);
+        // console.log('If we were to call the setter function here, the new initial pokeObj state would be this:', temporaryContainerObj);
         setTempPokeObj(temporaryContainerObj);
         
     }
@@ -151,26 +147,26 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         temporaryContainerObj[key][moveSlotIndex] =  newValue;
         // console.log('this is what we are trying to modify:', temporaryContainerObj);
         // console.log('using this input data:', key, newValue, moveSlotIndex);
-        console.log('If we were to call the setter function here, the new initial pokeObj state would be this:', temporaryContainerObj);
+        // console.log('If we were to call the setter function here, the new initial pokeObj state would be this:', temporaryContainerObj);
         setTempPokeObj(temporaryContainerObj);
     }
 
     function handleChange(event: any){
-        console.log(event.target.value);
+        // console.log(event.target.value);
         
         //slice off the last 2 characters of the id to make key
         let key = event.target.id.slice(0, -2);
         
         //if it is a move, parse the key additionally
         if (key.includes('move')){
-            console.log('TRUE: the key contains move', key);
+            // console.log('TRUE: the key contains move', key);
             //parse the word move and the move array index to seperate variables
             let parsedMoveNumber: number = key.slice(-1);
             let parsedKey: string = (key.slice(0,4) + 's');
-            console.log('parsing produces:', parsedMoveNumber, parsedKey);
+            // console.log('parsing produces:', parsedMoveNumber, parsedKey);
             modifyInitialPokeObjMoves(parsedKey, event.target.value, parsedMoveNumber);
         } else{
-            console.log('FALSE: the key is NOT a move', key);
+            // console.log('FALSE: the key is NOT a move', key);
             modifyInitialPokeObjProp(key, event.target.value);
         }
 
@@ -183,8 +179,8 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
           <h3 className="pancakes-text text-4xl  w-10 rounded-full" >{slotNum}</h3>
           <label className="swap">
             <input type="checkbox" />
-            <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/lock--v1.png" alt="" className="swap-on rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
-            <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/unlock.png" alt="" className="swap-off rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
+            <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/lock--v1.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-on rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
+            <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/unlock.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-off rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
           </label>
       </div>
       <div id="image-and-name" className="flex w-full h-56  justify-center ">
@@ -214,7 +210,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
 
       <StatContext.Provider value={{tempPokeObj, setTempPokeObj}}>
           <div id="stat-container" className="stat-container">
-            <StatInput stat="HP" statValue={9} slotNum={slotNum} />
+            <StatInput stat="HP" statValue={pokeObj?.evSpread.HP} slotNum={slotNum} />
             <StatInput stat="Atk" statValue={pokeObj?.evSpread.Atk} slotNum={slotNum} />
             <StatInput stat="Def" statValue={pokeObj?.evSpread.Def} slotNum={slotNum} />
             <StatInput stat="SpA"  statValue={pokeObj?.evSpread.SpA} slotNum={slotNum}/>

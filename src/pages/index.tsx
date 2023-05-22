@@ -59,15 +59,17 @@ const Home: NextPage = () => {
   React.useEffect(() => {
     // console.log('the current ROOT state:', team, lockedSlots);
   }, [team, lockedSlots]);
+
   React.useEffect(() => {
+    //whenever there is ANY change to the 'team' state, the text-version of it (teamData) will automatically update 
     let exportTxt: string = stringifyTeam(team);
-    console.log(team);
+    // console.log(team);
     setTeamData(exportTxt);
   }, [team]);
 
   function toggleLockSlotN(n: number) {
     let newLockedData: LockMatrix = { ...lockedSlots };
-    newLockedData[n] = !lockedSlots[n];
+    newLockedData[n] = !lockedSlots[n]; //easily swap between true/false
 
     setLockedSlots(newLockedData);
     console.log(lockedSlots);
@@ -79,11 +81,11 @@ const Home: NextPage = () => {
   ) {
     //called by child components
     //passes finalized pokeObj into root state with index that matches teamSlot number
-    console.log(
-      "this is where root state would be updated:",
-      i,
-      updatedBattlePokemonObject
-    );
+    // console.log(
+    //   "this is where root state would be updated:",
+    //   i,
+    //   updatedBattlePokemonObject
+    // );
     stagedTeam[i] = updatedBattlePokemonObject;
 
     let newTeamState = { ...team };
@@ -91,31 +93,20 @@ const Home: NextPage = () => {
     //update team state ONCE.
     //This if-statement makes it so that setTeam does not trigger until all components have had a chance to update the stagedTeam array
     if (i > 1) {
-      console.log(
-        "this should only trigger ONCE when the last team slot is passed into stagedTeam"
-      );
+      // console.log(
+      //   "this should only trigger ONCE when the last team slot is passed into stagedTeam"
+      // );
       setTeam(stagedTeam);
     }
 
-    console.log("compare these:", team, stagedTeam);
+    // console.log("compare these:", team, stagedTeam);
   }
 
   ///lets just try editing main team obj directly.
 
-  function updateTeam(): any {
-    //create deep copy of the team obj to not edit state directly
-    // let tempObj: Team = JSON.parse(JSON.stringify(stagedTeam));
-    //set state
-    console.log(
-      "calling setTeam 2 seconds after export signal. THIS SHOULD ONLY PRINT ONCE!!!!!!!!!!!!!!!! oh and btw here is the temp obj that should have just been parsed....",
-      stagedTeam
-    );
-    // setTeam(tempObj);
-  }
 
   function exportData() {
     setSignalToConfirmExport(Date.now());
-    setTimeout(updateTeam, 2000);
   }
 
   function generateRandomMon() {
@@ -131,13 +122,28 @@ const Home: NextPage = () => {
     let teamSoFar: string[] = [];
     let itemsSoFar: string[] = [];
 
+
     //chose 6 mons, checking running list each time
 
     //generate first mon
-    let slot1: BattlePokemon = getRandomPokemon(RandomSetsSV as any);
-    teamSoFar.push(slot1.species);
-    //@ts-ignore
-    itemsSoFar.push(slot1.item);
+
+
+
+
+
+    // TODO: make each conditional based on lockedSlots state
+      //for some reason there is a bug with stat assignment when this happens? 
+    let slot1: BattlePokemon;
+    if(true){
+      do {
+        slot1 = getRandomPokemon(RandomSetsSV as any);
+        //@ts-ignore
+      } while (teamSoFar.includes(slot1.species) || itemsSoFar.includes(slot1.item));
+      teamSoFar.push(slot1.species);
+      //@ts-ignore
+      itemsSoFar.push(slot1.item);
+    }
+    
 
     //generate the rest, checking as you go
     //`do-while` lines are meant to serve as a way to prevent the same species from being added twice.
@@ -145,7 +151,9 @@ const Home: NextPage = () => {
 
     let slot2: BattlePokemon;
     do {
-      slot2 = getRandomPokemon(RandomSetsSV as any);
+     
+        slot2 = getRandomPokemon(RandomSetsSV as any);
+    
       //@ts-ignore
     } while (teamSoFar.includes(slot2.species) || itemsSoFar.includes(slot2.item));
     teamSoFar.push(slot2.species);
@@ -219,7 +227,6 @@ const Home: NextPage = () => {
   }
 
   function stringifyTeam(team: Team): string {
-    //TODO write this
     //stringify poke obj into smogon format
     let exportTxt: string = "";
 

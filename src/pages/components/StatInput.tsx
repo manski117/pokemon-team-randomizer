@@ -28,7 +28,7 @@ export default function StatInput({stat, statValue, slotNum}: any){
 
     
     function handleChange(event: any){
-        console.log(event.target.value);
+        // console.log(event.target.value);
         updateStatState(event.target.value);
         // setStatNum(event.target.value);
     }
