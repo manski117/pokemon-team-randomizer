@@ -372,6 +372,7 @@ const Home: NextPage = () => {
     setTeamData("you hit the generate button. State should have updated.");
     setSignalToUpdateTeamSlot(Date.now()); //passed as prop to initiate change in child components
     // console.log('teamSoFar:', teamSoFar);
+    subtractRoll();
   }
 
   function buildTeamSpeciesArray(team:Team): string[]{
@@ -467,12 +468,13 @@ const Home: NextPage = () => {
         </h1>
         <nav id="functionality-buttons" className="flex">
           <button
-            className="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
+            className="btn"
             onClick={generateMoreRandomMons}
+            disabled={rollsLeft < 1 ? true : false}
           >
             Shuffle!
           </button>
-          <button className="btn" onClick={toggleLimitRolls}>
+          <button className="btn"  onClick={toggleLimitRolls}>
             {limitRolls ? `Rolls Remaining: ${rollsLeft}`: "Rolls Remaining: INF"}
           </button>
           <button className="btn" onClick={exportData}>
