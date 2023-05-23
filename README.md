@@ -22,14 +22,10 @@ Updated the readme from a new repo. Does the change show up on the github?
 
 ## Program team-crafting logic
 - items based on pkmn team role
-- lock button *current task 5/22*
 
 ## Export to modal
 - make modal appear with text on button press.
 
-
-## TODO: Debug/Fix:
-- make sure locked pkmn are added to array before randomizing the rest.
 
 ## Tests to write:
 - make sure no pokemon have same species
@@ -39,20 +35,23 @@ Updated the readme from a new repo. Does the change show up on the github?
 - don't allow hostile html injection into inputs
 - make sure pokeObjRecieved updates accurately
 
-## Planned Future Features:
-- by type
+## Features left TODO: 
+ - limited re-rolls
+ - force monotype
+
+### Planned Future Features:
+- filter by popularity
 - abilities
 - natures (ability to randomize natures, natures match role, etc.)
 - stats
 - doubles logic
 - other generations
 - tiers
-- edit moves, abilities, items, stats
 - auto-populate / auto complete inputs
 - check validity
 
 
-#### Bugs to eventually fix: 
+#### Bugs to fix: 
  - Arceus of a certain type MUST appear with the plate of that corresponding type.
 
 
