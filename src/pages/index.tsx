@@ -54,6 +54,10 @@ const Home: NextPage = () => {
   const [signalToConfirmExport, setSignalToConfirmExport] = React.useState(
     Date.now()
   );
+  const [rollsLeft, setRollsLeft] = React.useState(3);
+  const [limitRolls, setLimitRolls] = React.useState(false);
+
+
   let stagedTeam = { ...team };
 
   React.useEffect(() => {
@@ -79,6 +83,16 @@ const Home: NextPage = () => {
 
     setLockedSlots(newLockedData);
     console.log(lockedSlots);
+  }
+
+  function toggleLimitRolls(){
+    setLimitRolls(!limitRolls);
+    setRollsLeft(3);
+  }
+
+  function subtractRoll(){
+
+    setRollsLeft(rollsLeft-1);
   }
 
   function sendNewDataToRoot(
@@ -456,10 +470,13 @@ const Home: NextPage = () => {
             className="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"
             onClick={generateMoreRandomMons}
           >
-            generate
+            Shuffle!
+          </button>
+          <button className="btn" onClick={toggleLimitRolls}>
+            {limitRolls ? `Rolls Remaining: ${rollsLeft}`: "Rolls Remaining: INF"}
           </button>
           <button className="btn" onClick={exportData}>
-            export
+            Export
           </button>
         </nav>
         <div id="todo-this-will-eventually-go-in-modal" className="w-4/5">
