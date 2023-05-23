@@ -67,6 +67,12 @@ const Home: NextPage = () => {
     setTeamData(exportTxt);
   }, [team]);
 
+  React.useEffect(() => {
+    //Call initialTeam method 
+    generateRandomMon();
+    //Pass an empty array as a dependency to prevent useEffect from running again
+  }, [])
+
   function toggleLockSlotN(n: number) {
     let newLockedData: LockMatrix = { ...lockedSlots };
     newLockedData[n] = !lockedSlots[n]; //easily swap between true/false
@@ -108,19 +114,42 @@ const Home: NextPage = () => {
   function exportData() {
     setSignalToConfirmExport(Date.now());
   }
+/*
+  function buildTeamSpeciesArray(team:Team){
+    //todo: delete later if not used
+    let teamSpeciesSoFar: string[] = [];
+    //Loop through all keys in the team object
+    for(let i in team){
+      //Check if the value is not null
+      if(team[i] !== null){
+        //Push the species of the pokemon to the teamSpeciesSoFar array
+        teamSpeciesSoFar.push(team[i].species);
+      }
+    }
+    //Return the array of species
+    return teamSpeciesSoFar;
+  }
+*/
+  
 
   function generateRandomMon() {
     /////randomize mons and set state/////
     //TODO: add lock logic
-    //TODO: add item logic
-      //TODO:
-        //modify code in index.ts to only let there be one item of each type generated
-        //you can use the do-while loop similar to the species hack
     //TODO: add locked-in mons to teamSoFar array
+
+      //
+      //intake current team
+      //set up slots to import those that are locked in
+      //make lock button disabled if species is null?
+        //or just commit to having that auto-populate and never letting the user have the chance to have an empty slot?
+    
+    
 
     //make running list of chosen mons to ensure no duplicate species.
     let teamSoFar: string[] = [];
     let itemsSoFar: string[] = [];
+
+    
 
 
     //chose 6 mons, checking running list each time
@@ -133,7 +162,7 @@ const Home: NextPage = () => {
 
     // TODO: make each conditional based on lockedSlots state
       //for some reason there is a bug with stat assignment when this happens? 
-    let slot1: BattlePokemon;
+    let slot1: BattlePokemon | null = null;
     if(true){
       do {
         slot1 = getRandomPokemon(RandomSetsSV as any);
