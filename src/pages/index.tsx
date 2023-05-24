@@ -243,11 +243,9 @@ const Home: NextPage = () => {
 
   function generateMoreRandomMons() {
     /////randomize mons and set state/////
-    //TODO: add lock logic
-    //TODO: add locked-in mons to teamSoFar array
-      //setup locked conditionals on do-whiles
-      //test via button
-
+    //TODO: Modify the do-while loops to have mono-type capability.
+      //SHOULD just inolve slotX.type?
+      //proooooooooobably jsut break down and make these into functions....cdz
     let teamCopy = {...team};
 
     //make running list of chosen mons to ensure no duplicate species.
@@ -257,7 +255,8 @@ const Home: NextPage = () => {
 
     // TODO: make each conditional based on lockedSlots state
       //for some reason there is a bug with stat assignment when this happens? 
-    let slot1: BattlePokemon | null;
+    /*
+      let slot1: BattlePokemon | null;
     //if slot is locked, don't generate a new mon
     if(lockedSlots[1]){
       slot1 = teamCopy[1];
@@ -267,12 +266,32 @@ const Home: NextPage = () => {
         //@ts-ignore
       } while (teamSoFar.includes(slot1.species) || itemsSoFar.includes(slot1.item));
     }
+    */
+    let slot1: BattlePokemon | null = generateRandomSlot(1, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot1.species);
     //@ts-ignore
     itemsSoFar.push(slot1.item);
-    //TODO 923:
-      //add conditionals to the rest
+
+
+    function generateRandomSlot(slot: number, teamArr: string[], itemArr: string[]){
+      //take in the most recent arrays
+      //compare those arrays and execute the do-while loops
+      let pokeObj: BattlePokemon | null;
+      //if slot is locked, don't generate a new mon
+      if(lockedSlots[slot]){
+        //@ts-ignore
+        pokeObj = teamCopy[slot];
+      }else{
+        do {
+          pokeObj = getRandomPokemon(RandomSetsSV as any);
+          //@ts-ignore
+          //pokeObj will not be locked-in until all these conditions are met
+        } while (teamArr.includes(pokeObj.species) || itemArr.includes(pokeObj.item));
+      }
+      //return the BattlePokemonObject, then it will be parsed by the teamSoFar lines
+      return pokeObj;
+    }
 
 
     
@@ -281,76 +300,31 @@ const Home: NextPage = () => {
     //`do-while` lines are meant to serve as a way to prevent the same species from being added twice.
     //Basically, the program is saying "as long as this species name you picked out exists in the team so far, re-do the randomization until you get one that is NOT a species already in there. Only then can you exit loop and move on.
 
-    let slot2: BattlePokemon | null;
-    //if slot is locked, don't generate a new mon
-    if(lockedSlots[2]){
-      slot2 = teamCopy[2];
-    }else{
-      do {
-        slot2 = getRandomPokemon(RandomSetsSV as any);
-        //@ts-ignore
-      } while (teamSoFar.includes(slot2.species) || itemsSoFar.includes(slot2.item));
-    }
+    let slot2: BattlePokemon | null = generateRandomSlot(2, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot2.species);
     //@ts-ignore
     itemsSoFar.push(slot2.item);
 
-    let slot3: BattlePokemon | null;
-    //if slot is locked, don't generate a new mon
-    if(lockedSlots[3]){
-      slot3 = teamCopy[3];
-    }else{
-      do {
-        slot3 = getRandomPokemon(RandomSetsSV as any);
-        //@ts-ignore
-      } while (teamSoFar.includes(slot3.species) || itemsSoFar.includes(slot3.item));
-    }
+    let slot3: BattlePokemon | null = generateRandomSlot(3, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot3.species);
     //@ts-ignore
     itemsSoFar.push(slot3.item);
 
-    let slot4: BattlePokemon | null;
-    //if slot is locked, don't generate a new mon
-    if(lockedSlots[4]){
-      slot4 = teamCopy[4];
-    }else{
-      do {
-        slot4 = getRandomPokemon(RandomSetsSV as any);
-        //@ts-ignore
-      } while (teamSoFar.includes(slot4.species) || itemsSoFar.includes(slot4.item));
-    }
+    let slot4: BattlePokemon | null = generateRandomSlot(4, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot4.species);
     //@ts-ignore
     itemsSoFar.push(slot4.item);
 
-    let slot5: BattlePokemon | null;
-    //if slot is locked, don't generate a new mon
-    if(lockedSlots[5]){
-      slot5 = teamCopy[5];
-    }else{
-      do {
-        slot5 = getRandomPokemon(RandomSetsSV as any);
-        //@ts-ignore
-      } while (teamSoFar.includes(slot5.species) || itemsSoFar.includes(slot5.item));
-    }
+    let slot5: BattlePokemon | null = generateRandomSlot(5, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot5.species);
     //@ts-ignore
     itemsSoFar.push(slot5.item);
 
-    let slot6: BattlePokemon | null;
-    //if slot is locked, don't generate a new mon
-    if(lockedSlots[6]){
-      slot6 = teamCopy[6];
-    }else{
-      do {
-        slot6 = getRandomPokemon(RandomSetsSV as any);
-        //@ts-ignore
-      } while (teamSoFar.includes(slot6.species) || itemsSoFar.includes(slot6.item));
-    }
+    let slot6: BattlePokemon | null = generateRandomSlot(6, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot6.species);
     //@ts-ignore

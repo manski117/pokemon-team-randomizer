@@ -36,8 +36,8 @@ Updated the readme from a new repo. Does the change show up on the github?
 - make sure pokeObjRecieved updates accurately
 
 ## Features left TODO: 
- - limited re-rolls
- - force monotype
+ - force monotype *current task 5/24*
+ - debug: Shuffle button is counting down without being turned on
 
 ### Planned Future Features:
 - filter by popularity
