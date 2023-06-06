@@ -20,8 +20,7 @@ Updated the readme from a new repo. Does the change show up on the github?
 - responsive design
 
 
-## Program team-crafting logic
-- items based on pkmn team role
+
 
 ## Export to modal
 - make modal appear with text on button press.
@@ -36,8 +35,8 @@ Updated the readme from a new repo. Does the change show up on the github?
 - make sure pokeObjRecieved updates accurately
 
 ## Features left TODO: 
- - force monotype *current task 5/24*
- - debug: Shuffle button is counting down without being turned on
+ - **DONE** force monotype 
+ - debug: Shuffle button is counting down without being turned on *current task 6/6*
 
 ### Planned Future Features:
 - filter by popularity
@@ -50,6 +49,8 @@ Updated the readme from a new repo. Does the change show up on the github?
 - auto-populate / auto complete inputs
 - check validity
 
+## Program team-crafting logic
+- items based on pkmn team role
 
 #### Bugs to fix: 
  - Arceus of a certain type MUST appear with the plate of that corresponding type.

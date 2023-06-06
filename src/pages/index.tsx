@@ -7,6 +7,7 @@ import React from "react";
 import { getRandomPokemon } from "./api/functions/random";
 //import data
 import { RandomSetsSV } from "./api/data/randomSetsSV";
+import { Pokedex } from "./api/data/pokedex";
 //interfaces
 import {
   BattlePokemon,
@@ -56,6 +57,7 @@ const Home: NextPage = () => {
   );
   const [rollsLeft, setRollsLeft] = React.useState(3);
   const [limitRolls, setLimitRolls] = React.useState(false);
+  const [monotype, setMonotype] = React.useState<string>('all');
 
 
   let stagedTeam = { ...team };
@@ -287,11 +289,31 @@ const Home: NextPage = () => {
           pokeObj = getRandomPokemon(RandomSetsSV as any);
           //@ts-ignore
           //pokeObj will not be locked-in until all these conditions are met
-        } while (teamArr.includes(pokeObj.species) || itemArr.includes(pokeObj.item));
+        } while (teamArr.includes(pokeObj.species) || itemArr.includes(pokeObj.item) || !(checkType(Pokedex, pokeObj.species, monotype)));
       }
       //return the BattlePokemonObject, then it will be parsed by the teamSoFar lines
       return pokeObj;
     }
+    
+    
+    function checkType(dex: any, species: string, type: string){
+      //returns boolean
+      //true says proceed
+      //false will force re-roll
+      if (type === 'all'){
+        return true;
+      }
+      let specName = species.toLowerCase();
+      let speciesTypeArr: string[] = dex[specName]?.types;
+      console.log(speciesTypeArr, type, species, dex[specName]);
+      if (speciesTypeArr.includes(type)){
+        return true;
+      } else{
+        return false;
+      }
+    }
+
+
 
 
     
@@ -426,6 +448,16 @@ const Home: NextPage = () => {
     return exportTxt;
   }
 
+  //@ts-ignore
+  function updateMonotypeState(event){
+    if (event.target.value === "ALL TYPES"){
+      setMonotype('all');
+    }else{
+      setMonotype(event.target.value);
+    }
+    
+  };
+
   return (
     <>
       <Head>
@@ -440,6 +472,7 @@ const Home: NextPage = () => {
         <h1 className="text-sm sm:text-lg md:text-2xl lg:text-4xl xl:text-6xl">
           Pokemon Randomizer
         </h1>
+        <h2>{(monotype === 'all') ? `only ${monotype} types should be generated.` : "All types will be generated!"}</h2>
         <nav id="functionality-buttons" className="flex">
           <button
             className="btn"
@@ -448,13 +481,36 @@ const Home: NextPage = () => {
           >
             Shuffle!
           </button>
-          <button className="btn"  onClick={toggleLimitRolls}>
-            {limitRolls ? `Rolls Remaining: ${rollsLeft}`: "Rolls Remaining: INF"}
+          <button className="btn" onClick={toggleLimitRolls}>
+            {limitRolls ? `Rolls Remaining: ${rollsLeft}` : "Rolls Remaining: INF"}
           </button>
           <button className="btn" onClick={exportData}>
             Export
           </button>
-        </nav>
+          <select className="select select-bordered w-full max-w-xs" onChange={updateMonotypeState}>
+            <option disabled selected>
+              Force Monotype?
+            </option>
+            <option>ALL TYPES</option>
+            <option>Bug</option>
+            <option>Dark</option>
+            <option>Dragon</option>
+            <option>Electric</option>
+            <option>Fairy</option>
+            <option>Fighting</option>
+            <option>Fire</option>
+            <option>Flying</option>
+            <option>Ghost</option>
+            <option>Grass</option>
+            <option>Ground</option>
+            <option>Ice</option>
+            <option>Poison</option>
+            <option>Psychic</option>
+            <option>Rock</option>
+            <option>Steel</option>
+            <option>Water</option>
+          </select>
+        </nav>;
         <div id="todo-this-will-eventually-go-in-modal" className="w-4/5">
           <textarea
             name="export"
