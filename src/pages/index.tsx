@@ -93,8 +93,13 @@ const Home: NextPage = () => {
   }
 
   function subtractRoll(){
-
-    setRollsLeft(rollsLeft-1);
+    let rollsRemaining: number;
+    if (!limitRolls){
+      rollsRemaining = rollsLeft;
+    } else{
+      rollsRemaining = rollsLeft-1;
+    }
+    setRollsLeft(rollsRemaining);
   }
 
   function sendNewDataToRoot(
@@ -482,7 +487,7 @@ const Home: NextPage = () => {
             Shuffle!
           </button>
           <button className="btn" onClick={toggleLimitRolls}>
-            {limitRolls ? `Rolls Remaining: ${rollsLeft}` : "Rolls Remaining: INF"}
+            {limitRolls ? `Rolls Remaining: ${rollsLeft}` : `Rolls Remaining: INF (but also ${rollsLeft})`}
           </button>
           <button className="btn" onClick={exportData}>
             Export

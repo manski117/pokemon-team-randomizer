@@ -36,7 +36,7 @@ Updated the readme from a new repo. Does the change show up on the github?
 
 ## Features left TODO: 
  - **DONE** force monotype 
- - debug: Shuffle button is counting down without being turned on *current task 6/6*
+ - **DONE** debug: Shuffle button is counting down without being turned on 
 
 ### Planned Future Features:
 - filter by popularity
