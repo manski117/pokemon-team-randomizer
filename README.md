@@ -14,16 +14,20 @@ Updated the readme from a new repo. Does the change show up on the github?
 - regex to sanitize hostile escape characters
 - **DONE** ~~layout and styling~~
 
-## Add Styling
+## Add Styling *current task 6/14*
 - yeah, lets get them images
 - pokemon images (api call?)
 - responsive design
+- edit styles so that modal is bigger
 
 
 
 
 ## Export to modal
-- make modal appear with text on button press.
+- make modal appear with text on button press. 
+    **DONE** line 588 is where the current export line should be sent to when "export" is clicked
+    **DONE** modal should be able to close
+    **DONE** make sure that modifying a team slot is reflected in modal export
 
 
 ## Tests to write:
@@ -37,6 +41,10 @@ Updated the readme from a new repo. Does the change show up on the github?
 ## Features left TODO: 
  - **DONE** force monotype 
  - **DONE** debug: Shuffle button is counting down without being turned on 
+
+
+<!-- BELOW HERE IS STUFF TO DO TO IMPROVE MVP -->
+
 
 ### Planned Future Features:
 - filter by popularity

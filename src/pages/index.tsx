@@ -516,22 +516,7 @@ const Home: NextPage = () => {
             <option>Water</option>
           </select>
         </nav>;
-        <div id="todo-this-will-eventually-go-in-modal" className="w-4/5">
-          <textarea
-            name="export"
-            id="export"
-            className="h-80 w-full"
-            value={teamData}
-            onChange={generateRandomMonFirstBatch}
-          ></textarea>
-          <p className="bg-black text-xs text-white sm:text-lg md:text-2xl lg:text-4xl xl:text-6xl">
-            {Object.keys(team).map((key) =>
-              team[key]
-                ? `${key}: ${team[key]!.species}; `
-                : `${key}: ${team[key]}; `
-            )}
-          </p>
-        </div>
+        
 
         <div id="team-gui" className="flex flex-wrap">
           <TeamSlot
@@ -585,23 +570,27 @@ const Home: NextPage = () => {
         </div>
 
         <label htmlFor="my-modal" className="btn">
-          open modal
+          Export Team
         </label>
 
         {/* Place nothing below here except for the modal!!! */}
         <input type="checkbox" id="my-modal" className="modal-toggle" />
+        {/* TODO: put the exported team txt here! */}
         <div className="modal">
           <div className="modal-box">
-            <h3 className="text-lg font-bold">
-              Congratulations random Internet user!
-            </h3>
-            <p className="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
+            <div id="todo-this-will-eventually-go-in-modal" className="w-4/5">
+                <textarea
+                  name="export"
+                  id="export"
+                  className="h-80 w-full"
+                  value={teamData}
+                  onChange={generateRandomMonFirstBatch}
+                ></textarea>
+                
+            </div>
             <div className="modal-action">
               <label htmlFor="my-modal" className="btn">
-                Yay!
+                Close
               </label>
             </div>
           </div>
