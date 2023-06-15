@@ -5,6 +5,7 @@ import React from "react";
 
 //import functions
 import { getRandomPokemon } from "./api/functions/random";
+import { fetchPokemonImageByNum } from "./api/functions/imageFetching";
 //import data
 import { RandomSetsSV } from "./api/data/randomSetsSV";
 import { Pokedex } from "./api/data/pokedex";

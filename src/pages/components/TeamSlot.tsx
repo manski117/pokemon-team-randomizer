@@ -1,5 +1,11 @@
 import React from "react";
 import { useState } from "react";
+//functions
+import { fetchPokemonImageByNum } from "../api/functions/imageFetching";
+
+//data
+import { Pokedex } from "../api/data/pokedex";
+
 //components
 import StatInput from "./StatInput";
 //interfaces
@@ -14,6 +20,9 @@ export const StatContext = React.createContext<any>('');
 // slotNum={1} toggleLock={toggleLockSlotN}
 export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, signalToExport, exportFinal}: any) {
     const [locked, setLocked] = useState<boolean>(false);
+    const [pokeNumber, setPokeNumber] = useState<number>((() => {
+        return Math.floor(Math.random() * 1009) + 1;
+      })());
     
     //this state is source of truth for if obj has been recieved or is null
     const [pokeObjRecieved, setPokeObjRecieved] = useState<boolean>(() => {
@@ -37,6 +46,9 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         if (signalToUpdate != null) {
         //   console.log(`this is when team slot ${slotNum} SHOULD re-render from now on`, signalToUpdate);
           setInitialInputValues();
+          
+        //   setPokeNumber(newNum);
+
           if (pokeObjRecieved){
             updateInitialPokemonObj();
           }  
@@ -88,10 +100,39 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         //take data from prop and create an initialized obj for mutation within component
         let initalPokemonData = new BattlePokemon(`${pokeObj.species}`, `${pokeObj.ability}`, pokeObj.moves, `${pokeObj.nature}`, pokeObj.evSpread, `${pokeObj.item}`, `${pokeObj.teraType}`);
             setTempPokeObj(initalPokemonData);
+
+        //try to get the pokedex number and log it
+        let newNum = getDexNumFromSpec(Pokedex, pokeObj?.species);
+        console.log(`pokemon:${pokeObj?.species} number:`, newNum);
+        //TODO:
+            //for now this looks like a good home for fetching the image
+            //we currently can turn species name into number. 
+            //next, lets use this number we are getting to test the fetch function
+            //this is the backup, but ideally the smogon gifs is still the ideal.
+        let possibleImgURL =  fetchPokemonImageByNum(newNum);
+        console.log(possibleImgURL, 'outside async function');
     }
 
+    function getDexNumFromSpec(dex: any, species: string){
+        //returns number
+        //a number between 1-1009 should fetch an image successfully
+        //if a number cannot be fetched from species, then we will return '0'
+        
+        let specName = species.toLowerCase();
+        let pokeNum: number = dex[specName]?.num;
+        console.log(pokeNum, dex[specName]?.num);
+        if ((1 <= pokeNum ) && (pokeNum <= 1009) ){
+          return pokeNum;
+        } else{
+          return 0;
+        }
 
-    //////TODO: grab all values from the inputs and make sure they are accurate/////
+        //TODO: implement this function
+            //use it to implement fetchImageByNum
+            //use its output to make the image either the pokeball or the returned image
+   
+      }
+
 
     function setInitialInputValues(){
         //this should ONLY run the first time a pokeObj is recieved.
@@ -177,6 +218,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
     <div id={slotID} className="card w-96 bg-base-100 shadow-xl flex-col items-center ">
       <div className="flex justify-between items-center w-11/12 ">
           <h3 className="pancakes-text text-4xl  w-10 rounded-full" >{slotNum}</h3>
+          {/* <h5 className="text-lg text-red-400">{pokeNumber}</h5> */}
           <label className="swap">
             <input type="checkbox" />
             <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/lock--v1.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-on rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />

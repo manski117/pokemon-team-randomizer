@@ -14,10 +14,25 @@ Updated the readme from a new repo. Does the change show up on the github?
 - regex to sanitize hostile escape characters
 - **DONE** ~~layout and styling~~
 
-## Add Styling *current task 6/14*
-- yeah, lets get them images
-- pokemon images (api call?)
+## Add Styling 
+- pokemon images (api call?) 
+    - MIGHT be able to use https://play.pokemonshowdown.com/sprites/ani/ for fetching images, but for some reason only annihilape isn't working???? *current task 6/16* make a GOOD async funciton for the pokemon showdown gifs.
+
+    
+        -contingency: write a function that gets from smogon if it can, then defaults to another api
+
+        **as of 6/15**
+        - the function fetchPokemonImageByNum() successfully returns img urls to pokemon
+        (cheats around typescript and asynch a little bit but hey it works.)
+
+        -link to free pokemon api: https://pokeapi.co/api/v2/pokemon/annihilape
+            -use .sprites.front_default for image. 
+                implement this by writing a program for the second answer 
+
+- design layout and colors
+
 - responsive design
+
 - edit styles so that modal is bigger
 
 
@@ -62,5 +77,4 @@ Updated the readme from a new repo. Does the change show up on the github?
 
 #### Bugs to fix: 
  - Arceus of a certain type MUST appear with the plate of that corresponding type.
-
 
