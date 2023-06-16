@@ -15,21 +15,14 @@ Updated the readme from a new repo. Does the change show up on the github?
 - **DONE** ~~layout and styling~~
 
 ## Add Styling 
-- pokemon images (api call?) 
-    - MIGHT be able to use https://play.pokemonshowdown.com/sprites/ani/ for fetching images, but for some reason only annihilape isn't working???? *current task 6/16* make a GOOD async funciton for the pokemon showdown gifs.
-
-    
-        -contingency: write a function that gets from smogon if it can, then defaults to another api
-
-        **as of 6/15**
-        - the function fetchPokemonImageByNum() successfully returns img urls to pokemon
-        (cheats around typescript and asynch a little bit but hey it works.)
-
-        -link to free pokemon api: https://pokeapi.co/api/v2/pokemon/annihilape
-            -use .sprites.front_default for image. 
-                implement this by writing a program for the second answer 
+- **DONE** pokemon images (api call?) 
+    implemented via pokemon api. Not annimated gifs but they look cool and most importantly, they work! 
 
 - design layout and colors
+
+- add typing display 
+    -excecute similar to how I implemented functions to check dex number and species. *current task 6/16*
+    -https://play.pokemonshowdown.com/sprites/types/ use this site to accomplish this
 
 - responsive design
 

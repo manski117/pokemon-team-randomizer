@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 //functions
-import { fetchPokemonImageByNum } from "../api/functions/imageFetching";
+import { fetchPokemonImageByNum, fetchShowdownGif, imageTestTester } from "../api/functions/imageFetching";
 
 //data
 import { Pokedex } from "../api/data/pokedex";
@@ -33,6 +33,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         }
     });
     const [tempPokeObj, setTempPokeObj] = useState<BattlePokemon | null>(pokeObj);
+    const [imageOfPokemon, setImageOfPokemon] = useState<string>('https://img.icons8.com/fluency/96/null/pokeball.png');
 
     React.useEffect(() => {
         //this code will run whenever the "locked" state of this team slot changes
@@ -93,6 +94,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
     });
 
     let slotID: string = `slot${slotNum}`;
+    
 
 
 
@@ -101,15 +103,15 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         let initalPokemonData = new BattlePokemon(`${pokeObj.species}`, `${pokeObj.ability}`, pokeObj.moves, `${pokeObj.nature}`, pokeObj.evSpread, `${pokeObj.item}`, `${pokeObj.teraType}`);
             setTempPokeObj(initalPokemonData);
 
+
+        ////////imgage fetching///////////
+
         //try to get the pokedex number and log it
         let newNum = getDexNumFromSpec(Pokedex, pokeObj?.species);
         console.log(`pokemon:${pokeObj?.species} number:`, newNum);
-        //TODO:
-            //for now this looks like a good home for fetching the image
-            //we currently can turn species name into number. 
-            //next, lets use this number we are getting to test the fetch function
-            //this is the backup, but ideally the smogon gifs is still the ideal.
+        //images currently render correctly. This works for now. 
         let possibleImgURL =  fetchPokemonImageByNum(newNum);
+        setImageOfPokemon(possibleImgURL);
         console.log(possibleImgURL, 'outside async function');
     }
 
@@ -228,7 +230,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
       <div id="image-and-name" className="flex w-full h-56  justify-center ">
         <figure className="w-1/2">
             <img
-            src={image}
+            src={imageOfPokemon}
             alt="Pokemon Image"
             className="rounded-xl h-48 w-48"
             />

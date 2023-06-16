@@ -35,6 +35,35 @@ export function fetchPokemonImageByNum(pokemonNum: number){
   };
 
 
+export const fetchShowdownGif = (gifName: string) => {
+    console.log('does this link work?', `https://play.pokemonshowdown.com/sprites/ani/${gifName}.gif`);
+    return `https://play.pokemonshowdown.com/sprites/ani/${gifName}.gif`;
+}
+
+
+//tests if image loads succssfully using the built in HTMLImageElement API method 'complete'
+export function testImage(imageUrl: string): boolean {
+    const image = new Image();
+    image.src = imageUrl;
+  
+    return image.complete;
+  };
+
+//let's test the tester
+export function imageTestTester(){
+    let test1 = testImage('https://img.icons8.com/fluency/96/null/pokeball.png');
+    let test2 = testImage('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+    let test3 = testImage('https://play.pokemonshowdown.com/sprites/ani/taurospaldeacombat.gif');
+    let test4 = testImage('https://play.pokemonshowdown.com/sprites/ani/pichu.gif');
+
+    console.log('only 3 should fail');
+    console.log('test1', test1);
+    console.log('test2', test2);
+    console.log('test3', test3);
+    console.log('test4', test4);
+}
+
+
 /*
   export const fetchPokemonImageByNum = async (pokemonNum: number): Promise<string> => {
     
@@ -57,5 +86,25 @@ export function fetchPokemonImageByNum(pokemonNum: number){
     
   
 };
+
+
+
+export const fetchShowdownGif = async (gifName: string): Promise<boolean> => {
+    try {
+      const gifLink = `https://play.pokemonshowdown.com/sprites/ani/${gifName}.gif`;
+      const gifData = await fetch(gifLink);
+      const status = gifData.status;
+      if (status === 200) {
+        console.log('success! image true', gifData);
+        return true;
+      } else {
+        console.log('failure! image false', gifData);
+        return false;
+      }
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  };
 
 */
