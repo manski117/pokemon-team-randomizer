@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 //import functions
+import { checkType } from "./api/functions/helperFunctions";
 import { getRandomPokemon } from "./api/functions/random";
 import { fetchPokemonImageByNum } from "./api/functions/imageFetching";
 //import data
@@ -92,6 +93,8 @@ const Home: NextPage = () => {
     setLimitRolls(!limitRolls);
     setRollsLeft(3);
   }
+
+  
 
   function subtractRoll(){
     let rollsRemaining: number;
@@ -302,27 +305,7 @@ const Home: NextPage = () => {
     }
     
     
-    function checkType(dex: any, species: string, type: string){
-      //returns boolean
-      //true says proceed
-      //false will force re-roll
-      if (type === 'all'){
-        return true;
-      }
-      let specName = species.toLowerCase();
-      let speciesTypeArr: string[] = dex[specName]?.types;
-      console.log(speciesTypeArr, type, species, dex[specName]);
-      if (speciesTypeArr.includes(type)){
-        return true;
-      } else{
-        return false;
-      }
-    }
-
-
-
-
-    
+ 
 
     //generate the rest, checking as you go
     //`do-while` lines are meant to serve as a way to prevent the same species from being added twice.

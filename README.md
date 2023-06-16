@@ -18,12 +18,9 @@ Updated the readme from a new repo. Does the change show up on the github?
 - **DONE** pokemon images (api call?) 
     implemented via pokemon api. Not annimated gifs but they look cool and most importantly, they work! 
 
-- design layout and colors
+- design layout and colors *current task 6/17*
 
-- add typing display 
-    -excecute similar to how I implemented functions to check dex number and species. *current task 6/16*
-    -https://play.pokemonshowdown.com/sprites/types/ use this site to accomplish this
-
+- **DONE** add typing display 
 - responsive design
 
 - edit styles so that modal is bigger

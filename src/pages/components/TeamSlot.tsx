@@ -2,6 +2,15 @@ import React from "react";
 import { useState } from "react";
 //functions
 import { fetchPokemonImageByNum, fetchShowdownGif, imageTestTester } from "../api/functions/imageFetching";
+function generateTypeTuple(dex: any, species: string){
+    //takes a pokemon name and returns an array of its types;
+    let specName = species.toLowerCase();
+    let speciesTypeArr: string[] = dex[specName]?.types;
+    
+    let capitalizedTypes: string[] = speciesTypeArr.map(type => type.charAt(0).toUpperCase() + type.slice(1));
+    console.log(capitalizedTypes.length, capitalizedTypes);
+    return capitalizedTypes;
+}
 
 //data
 import { Pokedex } from "../api/data/pokedex";
@@ -33,6 +42,11 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         }
     });
     const [tempPokeObj, setTempPokeObj] = useState<BattlePokemon | null>(pokeObj);
+    const [typeState, setTypeState] = useState(
+        <div className="flex flex-row justify-around items-center w-[120px]">
+            <img className="w-[50px] h-[25px] object-cover" src='https://play.pokemonshowdown.com/sprites/types/Normal.png' alt="type 1" />
+        </div>     
+    )
     const [imageOfPokemon, setImageOfPokemon] = useState<string>('https://img.icons8.com/fluency/96/null/pokeball.png');
 
     React.useEffect(() => {
@@ -47,6 +61,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         if (signalToUpdate != null) {
         //   console.log(`this is when team slot ${slotNum} SHOULD re-render from now on`, signalToUpdate);
           setInitialInputValues();
+        //   setTypeState(pokeObj.species);
           
         //   setPokeNumber(newNum);
 
@@ -112,6 +127,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         //images currently render correctly. This works for now. 
         let possibleImgURL =  fetchPokemonImageByNum(newNum);
         setImageOfPokemon(possibleImgURL);
+        runTypeStateSetter(pokeObj.species);
         console.log(possibleImgURL, 'outside async function');
     }
 
@@ -164,7 +180,9 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         let move3: string = pokeObj?.moves[3] ? pokeObj?.moves[3] : '';
         ((thisSlot as HTMLDivElement).querySelector(`#move-3-${slotNum}`) as HTMLInputElement).value = move3;
 
-
+        // console.log('this is species name:', pokeObj.species);
+        // generateTypeTuple(Pokedex, pokeObj?.species);
+        // runTypeStateSetter(pokeObj?.species);
     }
     //pokeObj?.species ? ((thisSlot as HTMLDivElement).querySelector('species') as HTMLInputElement).value = pokeObj.species : console.log('null');
     //((thisSlot as HTMLDivElement).querySelector(`#species-${slotNum}`) as HTMLInputElement).value = species;
@@ -215,12 +233,36 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
 
         //
     }
+    
+    function runTypeStateSetter(species:string){
+        //takes a pokemon species and sets the type state as its type array
+        let newTypeState: string[] = generateTypeTuple(Pokedex, species);
+        let numberOfTypes: number = newTypeState.length;
+        if (numberOfTypes > 1){
+            let type1src = `https://play.pokemonshowdown.com/sprites/types/${newTypeState[0]}.png`
+            let type2src = `https://play.pokemonshowdown.com/sprites/types/${newTypeState[1]}.png`
+            setTypeState (
+                <div className="flex flex-row justify-around items-center w-[120px]">
+                    <img className="w-[50px] h-[25px] object-cover" src={type1src} alt="type 1" />
+                    <img className="w-[50px] h-[25px] object-cover" src={type2src}  alt="type 2" />
+                </div>
+            )
+        } else if (numberOfTypes <= 1){
+            let type1src = `https://play.pokemonshowdown.com/sprites/types/${newTypeState[0]}.png`
+            
+            setTypeState (
+                <div className="flex flex-row justify-around items-center w-[120px]">
+                    <img className="w-[50px] h-[25px] object-cover" src={type1src} alt="type 1" />
+                </div>
+            )
+        }
+    }
 
   return (
     <div id={slotID} className="card w-96 bg-base-100 shadow-xl flex-col items-center ">
       <div className="flex justify-between items-center w-11/12 ">
           <h3 className="pancakes-text text-4xl  w-10 rounded-full" >{slotNum}</h3>
-          {/* <h5 className="text-lg text-red-400">{pokeNumber}</h5> */}
+          {typeState}
           <label className="swap">
             <input type="checkbox" />
             <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/lock--v1.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-on rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
