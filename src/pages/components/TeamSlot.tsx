@@ -242,9 +242,9 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
             let type1src = `https://play.pokemonshowdown.com/sprites/types/${newTypeState[0]}.png`
             let type2src = `https://play.pokemonshowdown.com/sprites/types/${newTypeState[1]}.png`
             setTypeState (
-                <div className="flex flex-row justify-around items-center w-[120px]">
-                    <img className="w-[50px] h-[25px] object-cover" src={type1src} alt="type 1" />
-                    <img className="w-[50px] h-[25px] object-cover" src={type2src}  alt="type 2" />
+                <div className="flex flex-row justify-around items-center w-[120px] min-[1688px]:w-[145px]">
+                    <img className="w-[50px] h-[25px] min-[1688px]:h-[32px] min-[1688px]:w-[68px] object-cover" src={type1src} alt="type 1" />
+                    <img className="w-[50px] h-[25px] min-[1688px]:h-[32px] min-[1688px]:w-[68px] object-cover" src={type2src}  alt="type 2" />
                 </div>
             )
         } else if (numberOfTypes <= 1){
@@ -252,46 +252,46 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
             
             setTypeState (
                 <div className="flex flex-row justify-around items-center w-[120px]">
-                    <img className="w-[50px] h-[25px] object-cover" src={type1src} alt="type 1" />
+                    <img className="w-[50px] h-[25px] min-[1688px]:h-[32px] min-[1688px]:w-[68px] object-cover" src={type1src} alt="type 1" />
                 </div>
             )
         }
     }
 
   return (
-    <div id={slotID} className="card w-96 bg-base-100 shadow-xl flex-col items-center ">
+    <div id={slotID} className="card w-[360px] lg:w-96 min-[1688px]:w-[500px] bg-base-100 shadow-xl flex-col items-center ">
       <div className="flex justify-between items-center w-11/12 ">
           <h3 className="pancakes-text text-4xl  w-10 rounded-full" >{slotNum}</h3>
           {typeState}
           <label className="swap">
             <input type="checkbox" />
-            <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/lock--v1.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-on rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
+            <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/lock--v1.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-on rounded-lg bg-neutral-content p-1 h-12 w-12  mt-2 mx-auto" />
             <img onClick={lockThisSlot} src="https://img.icons8.com/ios/50/null/unlock.png" alt="lockdown button" title="Lock down slot prevents re-randomization" className="swap-off rounded-lg bg-neutral-content p-1 h-12 w-12 mt-2 mx-auto" />
           </label>
       </div>
-      <div id="image-and-name" className="flex w-full h-56  justify-center ">
+      <div id="image-and-name" className="flex w-full h-56  min-[1688px]:h-80  justify-center ">
         <figure className="w-1/2">
             <img
             src={imageOfPokemon}
             alt="Pokemon Image"
-            className="rounded-xl h-48 w-48"
+            className="rounded-xl h-40 w-40 lg:h-48 lg:w-48 min-[1688px]:w-56 min-[1688px]:h-56"
             />
         </figure>
         <div className="flex-col w-1/2 mt-3 overflow-hidden">
-            <input id={`species-${slotNum}`} onChange={handleChange} type="text" placeholder="Species" className="input input-bordered w-44 h-10 mx-0 my-1 font-extrabold" />
-            <input id={`item-${slotNum}`} onChange={handleChange} type="text" placeholder="Item" className="input input-bordered w-44 h-8 mx-0 my-1" />
-            <input id={`ability-${slotNum}`} onChange={handleChange} type="text" placeholder="Ability" className="input input-bordered w-44 h-8 mx-0 my-1" />
-            <input id={`nature-${slotNum}`} onChange={handleChange} type="text" placeholder="Nature" className="input input-bordered w-44 h-8 mx-0 my-1" />
-            <input id={`teraType-${slotNum}`} onChange={handleChange} type="text" placeholder="Tera Type" className="input input-bordered w-44 h-8 mx-0 my-1" />
+            <input id={`species-${slotNum}`} onChange={handleChange} type="text" placeholder="Species" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-10  min-[1688px]:h-14 mx-0 my-1 font-extrabold" />
+            <input id={`item-${slotNum}`} onChange={handleChange} type="text" placeholder="Item" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8  min-[1688px]:h-12 mx-0 my-1" />
+            <input id={`ability-${slotNum}`} onChange={handleChange} type="text" placeholder="Ability" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8  min-[1688px]:h-12 mx-0 my-1" />
+            <input id={`nature-${slotNum}`} onChange={handleChange} type="text" placeholder="Nature" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8  min-[1688px]:h-12 mx-0 my-1" />
+            <input id={`teraType-${slotNum}`} onChange={handleChange} type="text" placeholder="Tera Type" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8  min-[1688px]:h-12 mx-0 my-1" />
         </div>
       </div>
 {/* value={pokeObj?.species ? pokeObj!.species : null} */}
 
       <div id="move-container" className="move-container">
-        <input id={`move-0-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-44 h-8 mx-0 my-1" />
-        <input id={`move-1-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-44 h-8 mx-0 my-1" />
-        <input id={`move-2-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-44 h-8 mx-0 my-1" />
-        <input id={`move-3-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-44 h-8 mx-0 my-1" />
+        <input id={`move-0-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8 min-[1688px]:h-12 mx-0 my-1" />
+        <input id={`move-1-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8 min-[1688px]:h-12 mx-0 my-1" />
+        <input id={`move-2-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8 min-[1688px]:h-12 mx-0 my-1" />
+        <input id={`move-3-${slotNum}`} onChange={handleChange} type="text" placeholder="-" className="input input-bordered w-40 lg:w-44 min-[1688px]:w-56 h-8 min-[1688px]:h-12 mx-0 my-1" />
       </div>
 
       <StatContext.Provider value={{tempPokeObj, setTempPokeObj}}>

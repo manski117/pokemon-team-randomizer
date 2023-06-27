@@ -18,10 +18,15 @@ Updated the readme from a new repo. Does the change show up on the github?
 - **DONE** pokemon images (api call?) 
     implemented via pokemon api. Not annimated gifs but they look cool and most importantly, they work! 
 
-- design layout and colors *current task 6/17*
+- **DONE** design layout 
 
-- **DONE** add typing display 
-- responsive design
+- responsive design *current task 6/27* *mostly done, just need to edit footer and export button*
+
+- design colors
+
+- typography
+
+
 
 - edit styles so that modal is bigger
 

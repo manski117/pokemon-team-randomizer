@@ -35,9 +35,9 @@ export default function StatInput({stat, statValue, slotNum}: any){
 
     return (
         <div className="form-control">
-            <label className="input-group input-group-xs ml-3">
+            <label className="input-group input-group-xs min-[1688px]:input-group-sm">
                 <span>{stat}</span>
-                <input value={tempPokeObj ? tempPokeObj?.evSpread[`${stat}`] : 0} type="number" min={0} max={252} placeholder="0" className="input input-bordered input-xs w-14"  id={`stat-${stat}-${slotNum}`} onChange={handleChange} />
+                <input value={tempPokeObj ? tempPokeObj?.evSpread[`${stat}`] : 0} type="number" min={0} max={252} placeholder="0" className="input input-bordered input-xs min-[1688px]:input-sm w-12 lg:w-16 min-[1688px]:w-20"  id={`stat-${stat}-${slotNum}`} onChange={handleChange} />
             </label>
         </div>
       );
