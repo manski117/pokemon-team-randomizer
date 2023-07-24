@@ -20,7 +20,9 @@ Updated the readme from a new repo. Does the change show up on the github?
 
 - **DONE** design layout 
 
-- responsive design *current task 6/27* *mostly done, just need to edit footer and export button*
+- responsive design *current task 7/24* *mostly done, just need to edit footer and export button*
+
+- this is a test to make sure I can push to my github from my new WSL2 environment
 
 - design colors
 
