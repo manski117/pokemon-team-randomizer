@@ -563,8 +563,8 @@ const Home: NextPage = () => {
         </div>
 
         <footer className="footer items-center p-4 bg-neutral text-neutral-content">
-          <div className="items-center flex flex-row">
-            <a className="w-[150px] flex justify-center" href="#">
+          <div className="items-center flex flex-col gap-y-5 md:gap-0 md:flex-row">
+            <a className="w-[150px] flex justify-center px-3" href="#">
               <img
                 className="object-fit w-[150px]"
                 src="/poketooldrop_logo_temporary.png"
@@ -573,7 +573,7 @@ const Home: NextPage = () => {
               />
             </a>
 
-            <div id="footer-disclaimer" className=" flex flex-col justify-center">
+            <div id="footer-disclaimer" className=" flex flex-col justify-center px-3">
               <h4 className="hidden md:block text-base font-medium">
                 Tool Disclaimer:
               </h4>
@@ -587,7 +587,7 @@ const Home: NextPage = () => {
               </p>
             </div>
 
-            <div id="footer-credits" className=" flex flex-col justify-center">
+            <div id="footer-credits" className=" flex flex-col justify-center px-3">
               <h4 className="hidden md:block text-base font-medium">Tool Credits:</h4>
               <p>Developed by @manski117.</p>
               <p className="hidden md:block">
@@ -603,7 +603,7 @@ const Home: NextPage = () => {
               </p>
             </div>
 
-            <div id="social-icons" className="flex flex-row w-fit gap-3 h-fit flex justify-center">
+            <div id="social-icons" className="flex flex-row w-fit gap-3 h-fit flex justify-center px-3">
             <a href="https://github.com/manski117/pokemon-team-randomizer">
               <img
                 src="https://img.icons8.com/ios-filled/50/c2cbf5/github.png"
@@ -637,26 +637,33 @@ const Home: NextPage = () => {
 
 
         
+    {/* Place nothing below here except for the modal!!! */}
+      <input type="checkbox" id="my-modal" className="modal-toggle" />;
 
-
-
-        {/* Place nothing below here except for the modal!!! */}
-        <input type="checkbox" id="my-modal" className="modal-toggle" />
-        {/* TODO: put the exported team txt here! */}
         <div className="modal">
-          <div className="modal-box">
-            <div id="todo-this-will-eventually-go-in-modal" className="w-4/5">
-                <textarea
-                  name="export"
-                  id="export"
-                  className="h-80 w-full"
-                  value={teamData}
-                  onChange={generateRandomMonFirstBatch}
-                ></textarea>
-                
+          <div className="modal-box md:max-w-[2000px] w-[80vw] h-[33rem] md: h-[27rem] min-w-[300px]">
+            {/* this box controls the width/height of modal, but for some reason it cannot be wider than 510px */}
+            <div
+              id="todo-this-will-eventually-go-in-modal"
+              className="w-full h-[21rem] md:h-96 min-w-[300px]"
+            >
+              {/* this div controls text box */}
+              <textarea
+                name="export"
+                id="export"
+                className="min-w-[260px] w-[260px] min-[440px]:w-full h-[22rem] md:h-96 text-[10px] min-[440px]:text-[12px] md:text-[18px]"
+                value={teamData}
+              ></textarea>
             </div>
-            <div className="modal-action">
-              <label htmlFor="my-modal" className="btn">
+            <div className="modal-action flex flex-col md:flex-row gap-1.5">
+              <div className="h-14 text-xs min-[420px]:text-base md:text-md p-1 rounded text-secondary w-full md:w-[49%] h-fit bg-neutral-focus m-0">
+                <p>Copy the text above into Showdown's team editor.</p>
+                <p className="hidden lg:block">(Press ctrl+A to select all, then ctrl+C to copy)</p>
+              </div>
+              <label
+                htmlFor="my-modal"
+                className="h-14 btn w-full md:w-[48%] !m-0 !ml-0 !mr-0"
+              >
                 Close
               </label>
             </div>
