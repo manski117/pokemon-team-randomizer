@@ -451,7 +451,7 @@ const Home: NextPage = () => {
 
 
 
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#93d9d1] to-[#15162c]">
+      <main className="flex min-h-screen flex-col items-center justify-center bg-neutral-content">
         <div id="randomizer-content-wrapper" className="flex flex-col ml-[5%] mr-[5%] max-w-[2000px]">
           <div id="title-container" className="flex flex-col items-center w-full mx-auto">
             <h1 className="text-sm sm:text-lg md:text-2xl lg:text-4xl xl:text-6xl">
@@ -563,7 +563,7 @@ const Home: NextPage = () => {
         </div>
 
         <footer className="footer items-center p-4 bg-neutral text-neutral-content">
-          <div className="items-center flex flex-col gap-y-5 md:gap-0 md:flex-row">
+          <div className="items-center flex flex-col w-full justify-around gap-y-5 md:gap-0 md:flex-row">
             <a className="w-[150px] flex justify-center px-3" href="#">
               <img
                 className="object-fit w-[150px]"
@@ -638,7 +638,7 @@ const Home: NextPage = () => {
 
         
     {/* Place nothing below here except for the modal!!! */}
-      <input type="checkbox" id="my-modal" className="modal-toggle" />;
+      <input type="checkbox" id="my-modal" className="modal-toggle" />
 
         <div className="modal">
           <div className="modal-box md:max-w-[2000px] w-[80vw] h-[33rem] md: h-[27rem] min-w-[300px]">
