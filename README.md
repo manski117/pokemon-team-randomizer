@@ -20,15 +20,20 @@ Updated the readme from a new repo. Does the change show up on the github?
 
 - **DONE** design layout 
 
-- responsive design *current task 7/24* *mostly done, just need to edit footer and export button*
+- **DONE** responsive design
 
-- design colors
+- **DONE** design colors 
 
-- typography
+- **DONE** style links in globals
+
+- **DONE** typography (button text bigger, font design, etc.)
+
+- clean up code *current task 7/26*
+
+- deploy v.1.0 to vercel!
 
 
 
-- edit styles so that modal is bigger
 
 
 
