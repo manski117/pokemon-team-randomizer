@@ -582,10 +582,10 @@ const Home: NextPage = () => {
 
         <footer className="footer items-center p-4 bg-neutral text-neutral-content">
           <div className="items-center flex flex-col w-full justify-around gap-y-5 md:gap-0 md:flex-row">
-            <a className="w-[150px] flex justify-center px-3" href="#">
+            <a className="w-[120px] flex justify-center px-3" href="#">
               <img
-                className="object-fit w-[150px]"
-                src="/poketooldrop_logo_temporary.png"
+                className="object-fit w-[120px]"
+                src="/poke-tool-drop-logo-1.0.png"
                 alt="logo"
                 title="Building tools for the pokemon competitive community"
               />

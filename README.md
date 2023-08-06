@@ -28,9 +28,16 @@ Updated the readme from a new repo. Does the change show up on the github?
 
 - **DONE** typography (button text bigger, font design, etc.)
 
-- clean up code *current task 7/26*
+- clean up code *current task 7/31*
+
+- Debug locked icon thing
 
 - deploy v.1.0 to vercel!
+
+- add logo
+    black ops one
+    fugaz one
+    grilled cheese BTN
 
 
 
