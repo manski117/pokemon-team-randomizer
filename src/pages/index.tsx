@@ -1,12 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
 
 //import functions
 import { checkType } from "./api/functions/helperFunctions";
 import { getRandomPokemon } from "./api/functions/random";
-import { fetchPokemonImageByNum } from "./api/functions/imageFetching";
 //import data
 import { RandomSetsSV } from "./api/data/randomSetsSV";
 import { Pokedex } from "./api/data/pokedex";
@@ -21,7 +19,6 @@ import {
 
 //components
 import TeamSlot from "./components/TeamSlot";
-
 
 const Home: NextPage = () => {
   const [teamData, setTeamData] = React.useState<string>("");
@@ -77,7 +74,7 @@ const Home: NextPage = () => {
     newLockedData[n] = !lockedSlots[n]; //easily swap between true/false
 
     setLockedSlots(newLockedData);
-    console.log(lockedSlots);
+    // console.log(lockedSlots);
   }
 
   function toggleLimitRolls(){
@@ -101,13 +98,6 @@ const Home: NextPage = () => {
     updatedBattlePokemonObject: BattlePokemon,
     i: number
   ) {
-    //called by child components
-    //passes finalized pokeObj into root state with index that matches teamSlot number
-    // console.log(
-    //   "this is where root state would be updated:",
-    //   i,
-    //   updatedBattlePokemonObject
-    // );
     stagedTeam[i] = updatedBattlePokemonObject;
 
     let newTeamState = { ...team };
@@ -124,8 +114,6 @@ const Home: NextPage = () => {
     // console.log("compare these:", team, stagedTeam);
   }
 
-  ///lets just try editing main team obj directly.
-
 
   function exportData() {
     setSignalToConfirmExport(Date.now());
@@ -133,35 +121,14 @@ const Home: NextPage = () => {
 
 
   function generateRandomMonFirstBatch() {
-    /////randomize mons and set state/////
-    //TODO: add lock logic
-    //TODO: add locked-in mons to teamSoFar array
-
-      //
-      //intake current team
-      //set up slots to import those that are locked in
-      //make lock button disabled if species is null?
-        //or just commit to having that auto-populate and never letting the user have the chance to have an empty slot?
-    
-    
-
+    /////randomize mons and set initial state/////
     //make running list of chosen mons to ensure no duplicate species.
     let teamSoFar: string[] = [];
     let itemsSoFar: string[] = [];
 
-    
-
-
     //chose 6 mons, checking running list each time
 
     //generate first mon
-
-
-
-
-
-    // TODO: make each conditional based on lockedSlots state
-      //for some reason there is a bug with stat assignment when this happens? 
     let slot1: BattlePokemon | null = null;
     if(true){
       do {
@@ -173,11 +140,9 @@ const Home: NextPage = () => {
       itemsSoFar.push(slot1.item);
     }
     
-
     //generate the rest, checking as you go
     //`do-while` lines are meant to serve as a way to prevent the same species from being added twice.
     //Basically, the program is saying "as long as this species name you picked out exists in the team so far, re-do the randomization until you get one that is NOT a species already in there. Only then can you exit loop and move on.
-
     let slot2: BattlePokemon;
     do {
      
@@ -240,35 +205,17 @@ const Home: NextPage = () => {
     });
     setTeamData("you hit the generate button. State should have updated.");
     setSignalToUpdateTeamSlot(Date.now()); //passed as prop to initiate change in child components
-    // console.log('teamSoFar:', teamSoFar);
   }
 
   function generateMoreRandomMons() {
     /////randomize mons and set state/////
-    //TODO: Modify the do-while loops to have mono-type capability.
-      //SHOULD just inolve slotX.type?
-      //proooooooooobably jsut break down and make these into functions....cdz
+    // runs on re-shuffles
     let teamCopy = {...team};
 
     //make running list of chosen mons to ensure no duplicate species.
     let teamSoFar: string[] = buildTeamSpeciesArray(teamCopy);
     let itemsSoFar: string[] = buildTeamItemsArray(teamCopy);
     
-
-    // TODO: make each conditional based on lockedSlots state
-      //for some reason there is a bug with stat assignment when this happens? 
-    /*
-      let slot1: BattlePokemon | null;
-    //if slot is locked, don't generate a new mon
-    if(lockedSlots[1]){
-      slot1 = teamCopy[1];
-    }else{
-      do {
-        slot1 = getRandomPokemon(RandomSetsSV as any);
-        //@ts-ignore
-      } while (teamSoFar.includes(slot1.species) || itemsSoFar.includes(slot1.item));
-    }
-    */
     let slot1: BattlePokemon | null = generateRandomSlot(1, teamSoFar, itemsSoFar);
     //@ts-ignore
     teamSoFar.push(slot1.species);
@@ -295,9 +242,6 @@ const Home: NextPage = () => {
       return pokeObj;
     }
     
-    
- 
-
     //generate the rest, checking as you go
     //`do-while` lines are meant to serve as a way to prevent the same species from being added twice.
     //Basically, the program is saying "as long as this species name you picked out exists in the team so far, re-do the randomization until you get one that is NOT a species already in there. Only then can you exit loop and move on.
@@ -360,7 +304,7 @@ const Home: NextPage = () => {
       //@ts-ignore
       if((team[i] !== null) && (lockedSlots[i])){
         //@ts-ignore
-        console.log('the species', team[i].species, 'is locked and should not change');
+        // console.log('the species', team[i].species, 'is locked and should not change');
         //Push the species of the pokemon to the teamSpeciesSoFar array
         //@ts-ignore
         teamSpeciesSoFar.push(team[i].species);
@@ -379,7 +323,7 @@ const Home: NextPage = () => {
       //@ts-ignore
       if((team[i] !== null) && (lockedSlots[i])){
         //@ts-ignore
-        console.log('the item', team[i].item, 'is locked and should not change');
+        // console.log('the item', team[i].item, 'is locked and should not change');
         //Push the item of the pokemon to the item array
         //@ts-ignore
         teamItemSoFar.push(team[i].item);
@@ -421,10 +365,8 @@ const Home: NextPage = () => {
       let pokeText = `${pokemon?.species} @ ${pokemon?.item}\nAbility: ${pokemon?.ability}\n${teraTypeExists}\n${evSpread}\n${pokemon?.nature} Nature\n${moves}\n\n`;
       exportTxt = exportTxt.concat("", pokeText);
     }
-    // EVs: 84 HP / 84 Atk / 84 Def / 84 SpA / 84 SpD / 84 Spe
 
     //send the string data to the callback function
-    // console.log('trying to send this to textarea:', exportTxt);
     return exportTxt;
   }
 
@@ -648,8 +590,6 @@ const Home: NextPage = () => {
             
           </div>
           </div>
-
-
         </footer>
 
 
