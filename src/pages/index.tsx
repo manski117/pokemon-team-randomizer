@@ -585,7 +585,7 @@ const Home: NextPage = () => {
             <a className="w-[120px] flex justify-center px-3" href="#">
               <img
                 className="object-fit w-[120px]"
-                src="/poke-tool-drop-logo-1.0.png"
+                src="/poke-tool-drop-logo-3.png"
                 alt="logo"
                 title="Building tools for the pokemon competitive community"
               />

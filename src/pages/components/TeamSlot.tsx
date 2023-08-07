@@ -265,8 +265,8 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
           {typeState}
           <label className="swap">
             <input type="checkbox" />
-            <img onClick={lockThisSlot} src="https://img.icons8.com/badges/48/lock-2.png" alt="lockdown button" title={locked ? `Locked! This slot will not change when shuffle button is pressed.` : "Like this pokemon? Click this buton to lock down the slot and prevent re-randomization"} className="swap-on rounded-full bg-secondary-focus p-1 h-12 w-12  mt-2 mx-auto" />
-            <img onClick={lockThisSlot} src="https://img.icons8.com/badges/48/unlock-2.png" alt="lockdown button" title={locked ? `Locked! This slot will not change when shuffle button is pressed.` : "Like this pokemon? Click this buton to lock down the slot and prevent re-randomization"} className="swap-off rounded-full bg-secondary p-1 h-12 w-12 mt-2 mx-auto" />
+            <img onClick={lockThisSlot} src={locked ? `https://img.icons8.com/badges/48/lock-2.png` : "https://img.icons8.com/badges/48/unlock-2.png"} alt="lockdown button" title={locked ? `Locked! This slot will not change when shuffle button is pressed.` : "Like this pokemon? Click this buton to lock down the slot and prevent re-randomization"} className="swap-on rounded-full bg-secondary-focus p-1 h-12 w-12  mt-2 mx-auto" />
+            <img onClick={lockThisSlot} src={locked ? `https://img.icons8.com/badges/48/lock-2.png` : "https://img.icons8.com/badges/48/unlock-2.png"} alt="lockdown button" title={locked ? `Locked! This slot will not change when shuffle button is pressed.` : "Like this pokemon? Click this buton to lock down the slot and prevent re-randomization"} className="swap-off rounded-full bg-secondary p-1 h-12 w-12 mt-2 mx-auto" />
           </label>
       </div>
       <div id="image-and-name" className="flex w-full h-56  min-[1688px]:h-80  justify-center ">
