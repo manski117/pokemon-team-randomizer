@@ -8,7 +8,7 @@ function generateTypeTuple(dex: any, species: string){
     let speciesTypeArr: string[] = dex[specName]?.types;
     
     let capitalizedTypes: string[] = speciesTypeArr.map(type => type.charAt(0).toUpperCase() + type.slice(1));
-    console.log(capitalizedTypes.length, capitalizedTypes);
+    // console.log(capitalizedTypes.length, capitalizedTypes);
     return capitalizedTypes;
 }
 
@@ -123,12 +123,12 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
 
         //try to get the pokedex number and log it
         let newNum = getDexNumFromSpec(Pokedex, pokeObj?.species);
-        console.log(`pokemon:${pokeObj?.species} number:`, newNum);
+        // console.log(`pokemon:${pokeObj?.species} number:`, newNum);
         //images currently render correctly. This works for now. 
         let possibleImgURL =  fetchPokemonImageByNum(newNum);
         setImageOfPokemon(possibleImgURL);
         runTypeStateSetter(pokeObj.species);
-        console.log(possibleImgURL, 'outside async function');
+        // console.log(possibleImgURL, 'outside async function');
     }
 
     function getDexNumFromSpec(dex: any, species: string){
@@ -138,7 +138,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
         
         let specName = species.toLowerCase();
         let pokeNum: number = dex[specName]?.num;
-        console.log(pokeNum, dex[specName]?.num);
+        // console.log(pokeNum, dex[specName]?.num);
         if ((1 <= pokeNum ) && (pokeNum <= 1009) ){
           return pokeNum;
         } else{
@@ -190,7 +190,7 @@ export default function TeamSlot({slotNum, toggleLock, pokeObj, signalToUpdate, 
     function lockThisSlot(){
         toggleLock(slotNum);
         setLocked(!locked);
-        console.log(`slot ${slotNum} is locked:`, locked);
+        // console.log(`slot ${slotNum} is locked:`, locked);
     }
 
     function modifyInitialPokeObjProp(key: string, newValue: string){
