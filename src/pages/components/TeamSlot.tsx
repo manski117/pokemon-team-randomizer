@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 //functions
-import { fetchPokemonImageByNum, fetchShowdownGif, imageTestTester } from "../api/functions/imageFetching";
+import { fetchPokemonImageByNum, fetchShowdownGif } from "../api/functions/imageFetching";
 function generateTypeTuple(dex: any, species: string){
     //takes a pokemon name and returns an array of its types;
     let specName = species.toLowerCase();

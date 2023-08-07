@@ -18,7 +18,7 @@ export function fetchPokemonImageByNum(pokemonNum: number){
       let pokemonLink = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonNum}.png`;
       const pokemonData = fetch(pokemonLink);
       
-      console.log(pokemonLink, 'inside async function', pokemonNum);
+      // console.log(pokemonLink, 'inside async function', pokemonNum);
 
       let statusCode: Promise<boolean> = checkURLStatus(pokemonLink);
 
@@ -36,7 +36,7 @@ export function fetchPokemonImageByNum(pokemonNum: number){
 
 
 export const fetchShowdownGif = (gifName: string) => {
-    console.log('does this link work?', `https://play.pokemonshowdown.com/sprites/ani/${gifName}.gif`);
+    // console.log('does this link work?', `https://play.pokemonshowdown.com/sprites/ani/${gifName}.gif`);
     return `https://play.pokemonshowdown.com/sprites/ani/${gifName}.gif`;
 }
 
@@ -49,6 +49,7 @@ export function testImage(imageUrl: string): boolean {
     return image.complete;
   };
 
+/*
 //let's test the tester
 export function imageTestTester(){
     let test1 = testImage('https://img.icons8.com/fluency/96/null/pokeball.png');
@@ -62,7 +63,7 @@ export function imageTestTester(){
     console.log('test3', test3);
     console.log('test4', test4);
 }
-
+*/
 
 /*
   export const fetchPokemonImageByNum = async (pokemonNum: number): Promise<string> => {
